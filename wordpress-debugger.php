@@ -12,30 +12,46 @@
     
     if (!$options){
         $options = array(
+            'enablelogger' => false,
             'loggers' => array(),
             'themedebug' => false,
             'databasedebug' => false
         );
     }
+    
+    if ($options['databasedebug']){
+        define( 'SAVEQUERIES', true );
         
+        function print_save_queries(){
+            if ( current_user_can( 'administrator' ) ) {
+                global $wpdb;
+                echo "<pre>";
+                print_r( $wpdb->queries );
+                echo "</pre>";
+            }
+        }
+        add_action( 'wp_footer', 'print_save_queries' );
+    }
+    
     // admin area
-    function wpdebugger_settings(){
-        require_once(plugin_dir_path(__FILE__).'wpdebugger-settings.php');
-    }
-    function wpdebugger_plugin_setup_menu(){
-        add_menu_page( 'Wordpress Debugger settings', 'wpdebugger', 'manage_options', 'wpdebugger', 'wpdebugger_settings' );
-    }
     if (is_admin()){
+        function wpdebugger_settings(){
+            require_once(plugin_dir_path(__FILE__).'wpdebugger-settings.php');
+        }
+        function wpdebugger_plugin_setup_menu(){
+            add_menu_page( 'Wordpress Debugger settings', 'wpdebugger', 'manage_options', 'wpdebugger', 'wpdebugger_settings' );
+        }
         add_action('admin_menu', 'wpdebugger_plugin_setup_menu');
     }
     
-    require_once(plugin_dir_path(__FILE__).'class.logger.php');
+    if ($options['enablelogger']){
+        require_once(plugin_dir_path(__FILE__).'class.logger.php');
     
-    foreach ($options['loggers'] as $logid){        
-        $logger = new Logger($logid);
-        $logger->init();
+        foreach ($options['loggers'] as $logid){        
+            $logger = new Logger($logid);
+            $logger->init();
+        }
     }
-    
     
 
 ?>

@@ -3,6 +3,7 @@ $options = get_option('wpdebugger_config', null);
     
     if (!$options){
         $options = array(
+            'enablelogger' => false,
             'loggers' => array(),
             'themedebug' => false,
             'databasedebug' => false
@@ -16,6 +17,7 @@ if (isset($_POST['action']))
 {
     $options['themedebug'] = isset($_POST['themedebug']);
     $options['databasedebug'] = isset($_POST['databasedebug']);
+    $options['enablelogger'] = isset($_POST['enablelogger']);
     $options['loggers'] = explode(',',trim($_POST['loggers']));
     update_option('wpdebugger_config', $options);
     ?>
@@ -25,10 +27,18 @@ if (isset($_POST['action']))
 }
 ?>
 <form method="post" action="" novalidate="novalidate">
-<input type="hidden" name="action" value="update">
+<input type="hidden" name="action" value="update" />
 
 <table class="form-table">
 <tbody>
+
+<tr>
+<th scope="row">Enable Logger</th>
+<td> <fieldset><legend class="screen-reader-text"><span>Enable</span></legend><label for="enablelogger">
+<input name="enablelogger" type="checkbox" id="enablelogger" value="1" <?=$options['enablelogger'] ? 'checked="checked"' : ''?>/>
+Enable</label>
+</fieldset></td>
+</tr>
 
 <tr>
 <th scope="row"><label for="loggers">Log Debug Ids</label></th>
