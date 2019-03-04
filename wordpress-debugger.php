@@ -39,7 +39,7 @@
             require_once(plugin_dir_path(__FILE__).'wpdebugger-settings.php');
         }
         function wpdebugger_plugin_setup_menu(){
-            add_menu_page( 'Wordpress Debugger settings', 'wpdebugger', 'manage_options', 'wpdebugger', 'wpdebugger_settings' );
+            add_menu_page( 'Wordpress Debugger settings', 'WP Debugger', 'manage_options', 'wpdebugger', 'wpdebugger_settings' );
         }
         add_action('admin_menu', 'wpdebugger_plugin_setup_menu');
     }

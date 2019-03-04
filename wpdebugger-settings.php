@@ -35,21 +35,21 @@ if (isset($_POST['action']))
 <tr>
 <th scope="row">Enable Logger</th>
 <td> <fieldset><legend class="screen-reader-text"><span>Enable</span></legend><label for="enablelogger">
-<input name="enablelogger" type="checkbox" id="enablelogger" value="1" <?=$options['enablelogger'] ? 'checked="checked"' : ''?>/>
+<input name="enablelogger" type="checkbox" id="enablelogger" value="1" <?php echo $options['enablelogger'] ? 'checked="checked"' : ''; ?>/>
 Enable</label>
 </fieldset></td>
 </tr>
 
 <tr>
 <th scope="row"><label for="loggers">Log Debug Ids</label></th>
-<td><input name="loggers" type="text" id="loggers" value="<?=join(",",$options['loggers'])?>" class="regular-text" />
+<td><input name="loggers" type="text" id="loggers" value="<?php echo join(",",$options['loggers']); ?>" class="regular-text" />
 <p class="description" id="tagline-description">Debug Ids. Split by comma</p></td>
 </tr>
 
 <tr>
 <th scope="row">Enable Database Debug</th>
 <td> <fieldset><legend class="screen-reader-text"><span>Enable</span></legend><label for="databasedebug">
-<input name="databasedebug" type="checkbox" id="databasedebug" value="1" <?=$options['databasedebug'] ? 'checked="checked"' : ''?>/>
+<input name="databasedebug" type="checkbox" id="databasedebug" value="1" <?php echo $options['databasedebug'] ? 'checked="checked"' : ''; ?>/>
 Enable</label>
 </fieldset></td>
 </tr>
@@ -57,7 +57,7 @@ Enable</label>
 <tr>
 <th scope="row">Enable Theme Debug</th>
 <td> <fieldset><legend class="screen-reader-text"><span>Enable</span></legend><label for="themedebug">
-<input name="themedebug" type="checkbox" id="themedebug" value="1" <?=$options['themedebug'] ? 'checked="checked"' : ''?>/>
+<input name="themedebug" type="checkbox" id="themedebug" value="1" <?php echo $options['themedebug'] ? 'checked="checked"' : ''; ?>/>
 Enable</label>
 </fieldset></td>
 </tr>
