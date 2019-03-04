@@ -12,8 +12,9 @@
     
     if (!$options){
         $options = array(
-            'msbot_id' => '',
-            'msbot_secret' => ''
+            'loggers' => array(),
+            'themedebug' => false,
+            'databasedebug' => false
         );
     }
         
@@ -29,7 +30,12 @@
     }
     
     require_once(plugin_dir_path(__FILE__).'class.logger.php');
-    //$logger = new Logger("searchwp_log");
-    //$logger->init();
+    
+    foreach ($options['loggers'] as $logid){        
+        $logger = new Logger($logid);
+        $logger->init();
+    }
+    
+    
 
 ?>
