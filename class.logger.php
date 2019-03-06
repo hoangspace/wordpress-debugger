@@ -78,9 +78,6 @@ class Logger {
 		// format our entry
 		$entry = '[' . date( 'Y-d-m G:i:s', current_time( 'timestamp' ) ) . '][' . $type . ']';
 
-		// flag it with the process ID
-		$entry .= '[' . SearchWP::instance()->get_pid() . ']';
-
 		// finally append the message
 		$entry .= ' ' . $message;
 
